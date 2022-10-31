@@ -107,3 +107,4 @@ dist
 /build
 /public/build
 prisma/dev.db
+.vercel
