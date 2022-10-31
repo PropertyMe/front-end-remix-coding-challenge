@@ -1,0 +1,9 @@
+{
+  "explorer.sortOrder": "default",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.codeActionsOnSave": { "source.organizeImports": true },
+  "editor.formatOnSave": true,
+  "editor.formatOnPaste": true,
+  "workbench.editor.highlightModifiedTabs": true,
+  "files.trimFinalNewlines": true
+}
