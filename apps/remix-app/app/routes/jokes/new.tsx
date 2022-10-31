@@ -1,3 +1,4 @@
+import { UiButton } from "@propertyme-coding-challenge/ui-button";
 import type { ActionFunction, LoaderFunction } from "@remix-run/node";
 import { json, redirect } from "@remix-run/node";
 import {
@@ -9,10 +10,10 @@ import {
 } from "@remix-run/react";
 import type { ReactEventHandler } from "react";
 import { useEffect, useState } from "react";
-import { JokeDisplay } from "~/components/joke";
+import { JokeDisplay } from "../../components/joke";
 
-import { db } from "~/utils/db.server";
-import { getUserId, requireUserId } from "~/utils/session.server";
+import { db } from "../../utils/db.server";
+import { getUserId, requireUserId } from "../../utils/session.server";
 
 function validateJokeContent(content: string) {
   if (content.length < 10) {
@@ -102,10 +103,7 @@ export default function NewJokeRoute() {
     setContent(actionData?.fields?.content || "");
   }, [actionData]);
 
-  console.log("transition on loda", transition);
   if (transition.submission) {
-    console.log("transition active", transition);
-
     const name = transition.submission.formData.get("name");
     const content = transition.submission.formData.get("content");
     if (
@@ -203,9 +201,9 @@ export default function NewJokeRoute() {
               {actionData.formError}
             </p>
           ) : null}
-          <button type="submit" className="button">
+          <UiButton type="submit" className="button">
             Add
-          </button>
+          </UiButton>
         </div>
       </Form>
     </div>

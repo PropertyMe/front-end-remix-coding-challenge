@@ -4,11 +4,11 @@ import type {
   MetaFunction,
 } from "@remix-run/node";
 import { json } from "@remix-run/node";
-import { useActionData, useSearchParams, Link, Form } from "@remix-run/react";
+import { Form, Link, useActionData, useSearchParams } from "@remix-run/react";
 
-import { db } from "~/utils/db.server";
-import { createUserSession, login, register } from "~/utils/session.server";
-import stylesUrl from "~/styles/login.css";
+import stylesUrl from "../styles/login.css";
+import { db } from "../utils/db.server";
+import { createUserSession, login, register } from "../utils/session.server";
 
 export const links: LinksFunction = () => {
   return [{ rel: "stylesheet", href: stylesUrl }];
