@@ -2,15 +2,29 @@
 
 A simple demo repo used in Front End code interviews
 
-## Based on [Remix.run Jokes Tutorial](https://remix.run/docs/en/v1/tutorials/jokes)
+## Remix App based on [Remix.run Jokes Tutorial](https://remix.run/docs/en/v1/tutorials/jokes)
+
+[README for the Remix App](./apps/remix-app/README.md)
 
 This is based on the Jokes App tutorial for easy familiarity of anyone who followed that.
 
 https://remix.run/docs/en/v1/tutorials/jokes
 
-# Welcome to Remix!
+## Welcome to NX!
 
-- [Remix Docs](https://remix.run/docs)
+- [Into to Nx](https://nx.dev/getting-started/intro)
+
+This is a monorepo management framework, we'll use it here to help have a library and an app working together.
+
+## Setup
+
+From your terminal:
+
+```sh
+npm install
+```
+
+This installs everything you need.
 
 ## Development
 
@@ -20,18 +34,4 @@ From your terminal:
 npm run dev
 ```
 
-This starts your app in development mode, rebuilding assets on file changes.
-
-## Deployment
-
-1. [Install `vercel`](https://vercel.com/docs/cli#installing-vercel-cli)
-
-```sh
-npm i -g vercel
-```
-
-2. Run vercel in the project root
-
-```sh
-vercel
-```
+This starts our Remix App app in development mode.
