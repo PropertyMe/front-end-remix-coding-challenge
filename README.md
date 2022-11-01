@@ -35,3 +35,14 @@ npm run dev
 ```
 
 This starts our Remix App app in development mode.
+
+## Deploy using Vercel
+
+Create a vercel project and set the [Root Directory](https://vercel.com/docs/concepts/deployments/configure-a-build?query=root%20directory#root-directory) to the remix-app folder
+in the general settings: `https://vercel.com/{username}/{projectname}/settings/general`
+
+Then run `vercel` in the root directory
+
+## Uses JokesAPI
+
+https://sv443.net/jokeapi/v2/

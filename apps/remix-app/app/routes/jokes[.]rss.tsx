@@ -1,6 +1,5 @@
 import type { LoaderFunction } from "@remix-run/node";
-
-import { db } from "../utils/db.server";
+import Jokes from "../utils/jokes.server";
 
 function escapeCdata(s: string) {
   return s.replace(/\]\]>/g, "]]]]><![CDATA[>");
@@ -16,11 +15,7 @@ function escapeHtml(s: string) {
 }
 
 export const loader: LoaderFunction = async ({ request }) => {
-  const jokes = await db.joke.findMany({
-    take: 100,
-    orderBy: { createdAt: "desc" },
-    include: { jokester: { select: { username: true } } },
-  });
+  const randomJokes = await Jokes.getJokes(5);
 
   const host =
     request.headers.get("X-Forwarded-Host") ?? request.headers.get("host");
@@ -40,18 +35,14 @@ export const loader: LoaderFunction = async ({ request }) => {
         <language>en-us</language>
         <generator>Kody the Koala</generator>
         <ttl>40</ttl>
-        ${jokes
+        ${randomJokes
           .map((joke) =>
             `
             <item>
-              <title><![CDATA[${escapeCdata(joke.name)}]]></title>
+              <title><![CDATA[${escapeCdata(`${joke.id}`)}]]></title>
               <description><![CDATA[A funny joke called ${escapeHtml(
-                joke.name
+                `${joke.setup || joke.joke}`
               )}]]></description>
-              <author><![CDATA[${escapeCdata(
-                joke.jokester.username
-              )}]]></author>
-              <pubDate>${joke.createdAt.toUTCString()}</pubDate>
               <link>${jokesUrl}/${joke.id}</link>
               <guid>${jokesUrl}/${joke.id}</guid>
             </item>

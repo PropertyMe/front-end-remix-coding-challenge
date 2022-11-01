@@ -1,0 +1,7 @@
+{
+  "buildCommand": "cd ../.. && npm run vercel-build",
+  "outputDirectory": "public",
+  "installCommand": "cd ../.. && npm install",
+  "framework": "remix",
+  "regions": ["syd1"]
+}

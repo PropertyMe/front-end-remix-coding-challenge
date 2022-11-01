@@ -1,31 +1,23 @@
 import type { LinksFunction, LoaderFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
-import { Form, Link, Outlet, useLoaderData } from "@remix-run/react";
+import { Link, Outlet, useLoaderData } from "@remix-run/react";
 
 import stylesUrl from "../styles/jokes.css";
-import { db } from "../utils/db.server";
-import { getUser } from "../utils/session.server";
+import Jokes, { Joke } from "../utils/jokes.server";
 
 export const links: LinksFunction = () => {
   return [{ rel: "stylesheet", href: stylesUrl }];
 };
 
 type LoaderData = {
-  user: Awaited<ReturnType<typeof getUser>>;
-  jokeListItems: Array<{ id: string; name: string }>;
+  randomJokes: Array<Joke>;
 };
 
 export const loader: LoaderFunction = async ({ request }) => {
-  const jokeListItems = await db.joke.findMany({
-    take: 5,
-    orderBy: { createdAt: "desc" },
-    select: { id: true, name: true },
-  });
-  const user = await getUser(request);
+  const randomJokes = await Jokes.getJokes(5);
 
   const data: LoaderData = {
-    jokeListItems,
-    user,
+    randomJokes,
   };
   return json(data);
 };
@@ -43,18 +35,6 @@ export default function JokesRoute() {
               <span className="logo-medium">J🤪KES</span>
             </Link>
           </h1>
-          {data.user ? (
-            <div className="user-info">
-              <span>{`Hi ${data.user.username}`}</span>
-              <Form action="/logout" method="post">
-                <button type="submit" className="button">
-                  Logout
-                </button>
-              </Form>
-            </div>
-          ) : (
-            <Link to="/login">Login</Link>
-          )}
         </div>
       </header>
       <main className="jokes-main">
@@ -63,21 +43,28 @@ export default function JokesRoute() {
             <Link to=".">Get a random joke</Link>
             <p>Here are a few more jokes to check out:</p>
             <ul>
-              {data.jokeListItems.map((joke) => (
-                <li key={joke.id}>
-                  <Link to={joke.id}>{joke.name}</Link>
+              {data.randomJokes.map((joke) => (
+                <li key={`${joke.id}`}>
+                  <Link to={`${joke.id}`}>{joke.setup || joke.joke}</Link>
                 </li>
               ))}
             </ul>
-            <Link to="new" className="button">
+            <a href="https://sv443.net/jokeapi/v2/#submit" className="button">
               Add your own
-            </Link>
+            </a>
           </div>
           <div className="jokes-outlet">
             <Outlet />
           </div>
         </div>
       </main>
+      <footer className="jokes-footer">
+        <div className="container">
+          <a href="https://sv443.net/jokeapi/v2/" title="JokesAPI v2">
+            All credit for the jokes goes to the JokesAPI
+          </a>
+        </div>
+      </footer>
     </div>
   );
 }

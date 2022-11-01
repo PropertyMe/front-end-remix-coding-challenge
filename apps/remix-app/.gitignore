@@ -108,3 +108,4 @@ dist
 /public/build
 prisma/dev.db
 .vercel
+/api
