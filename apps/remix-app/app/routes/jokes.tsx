@@ -1,3 +1,4 @@
+import { UiLinkButton } from "@propertyme-coding-challenge/ui-link-button";
 import type { LinksFunction, LoaderFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { Link, Outlet, useLoaderData } from "@remix-run/react";
@@ -19,6 +20,7 @@ export const loader: LoaderFunction = async ({ request }) => {
   const data: LoaderData = {
     randomJokes,
   };
+
   return json(data);
 };
 
@@ -49,9 +51,9 @@ export default function JokesRoute() {
                 </li>
               ))}
             </ul>
-            <a href="https://sv443.net/jokeapi/v2/#submit" className="button">
+            <UiLinkButton href="https://sv443.net/jokeapi/v2/#submit">
               Add your own
-            </a>
+            </UiLinkButton>
           </div>
           <div className="jokes-outlet">
             <Outlet />

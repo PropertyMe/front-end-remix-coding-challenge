@@ -1,9 +1,11 @@
-import { PassThrough } from "stream";
 import type { EntryContext } from "@remix-run/node";
 import { Response } from "@remix-run/node";
 import { RemixServer } from "@remix-run/react";
 import isbot from "isbot";
-import { renderToPipeableStream } from "react-dom/server";
+import { renderToPipeableStream, renderToString } from "react-dom/server";
+import { PassThrough } from "stream";
+import { ServerStyleSheet } from "styled-components";
+import { StyledComponentsContext } from "./utils/StyledComponentsContext";
 
 const ABORT_DELAY = 5000;
 
@@ -35,6 +37,8 @@ function handleBotRequest(
   remixContext: EntryContext
 ) {
   return new Promise((resolve, reject) => {
+    console.log(`I think it's a bot!`);
+
     let didError = false;
 
     const { pipe, abort } = renderToPipeableStream(
@@ -76,10 +80,22 @@ function handleBrowserRequest(
   remixContext: EntryContext
 ) {
   return new Promise((resolve, reject) => {
+    console.log(`I think it's a browser!`);
     let didError = false;
+    const sheet = new ServerStyleSheet();
+
+    let markup = renderToString(
+      sheet.collectStyles(
+        <RemixServer context={remixContext} url={request.url} />
+      )
+    );
+
+    const styles = sheet.getStyleElement();
 
     const { pipe, abort } = renderToPipeableStream(
-      <RemixServer context={remixContext} url={request.url} />,
+      <StyledComponentsContext.Provider value={styles}>
+        <RemixServer context={remixContext} url={request.url} />
+      </StyledComponentsContext.Provider>,
       {
         onShellReady() {
           const body = new PassThrough();

@@ -1,10 +1,10 @@
 /* eslint-disable */
 export default {
-  displayName: "ui-button",
+  displayName: "ui-link-button",
   preset: "../../jest.preset.js",
   transform: {
     "^.+\\.[tj]sx?$": "babel-jest",
   },
   moduleFileExtensions: ["ts", "tsx", "js", "jsx"],
-  coverageDirectory: "../../coverage/libs/ui-button",
+  coverageDirectory: "../../coverage/libs/ui-link-button",
 };

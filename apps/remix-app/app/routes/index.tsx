@@ -22,7 +22,9 @@ export default function IndexRoute() {
         <nav>
           <ul>
             <li>
-              <Link to="jokes">Read Jokes</Link>
+              <Link to="/jokes" reloadDocument>
+                Read Jokes
+              </Link>
             </li>
           </ul>
         </nav>

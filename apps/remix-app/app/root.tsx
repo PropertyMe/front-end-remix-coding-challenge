@@ -8,10 +8,12 @@ import {
   useCatch,
   useMatches,
 } from "@remix-run/react";
+import { useContext } from "react";
 
 import globalLargeStylesUrl from "./styles/global-large.css";
 import globalMediumStylesUrl from "./styles/global-medium.css";
 import globalStylesUrl from "./styles/global.css";
+import StyledComponentsContext from "./utils/StyledComponentsContext";
 
 export const links: LinksFunction = () => {
   return [
@@ -54,10 +56,16 @@ function Document({
   children: React.ReactNode;
   title?: string;
 }) {
+  const stylesFromContext = useContext(StyledComponentsContext);
   const matches = useMatches();
 
   // If at least one route wants to hydrate, this will return true
-  const includeScripts = matches.some((match) => match.handle?.hydrate);
+  // But also never turn it off in dev server because it can cause links to not work
+  const includeScripts =
+    process.env.NODE_ENV === "development" ||
+    matches.some((match) => match.handle?.hydrate);
+
+  console.log("process.env.NODE_ENV", process.env.NODE_ENV);
 
   return (
     <html lang="en">
@@ -65,11 +73,12 @@ function Document({
         <Meta />
         <title>{title}</title>
         <Links />
+        {typeof document === "undefined" ? stylesFromContext : null}
       </head>
       <body>
         {children}
         {includeScripts ? <Scripts /> : null}
-        <LiveReload />
+        {includeScripts ? <LiveReload /> : null}
       </body>
     </html>
   );
