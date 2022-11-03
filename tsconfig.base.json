@@ -15,6 +15,7 @@
     "sourceMap": true,
     "target": "es2015",
     "paths": {
+      "@propertyme-coding-challenge/ui-link": ["libs/ui-link/src/index.ts"],
       "@propertyme-coding-challenge/ui-link-button": [
         "libs/ui-link-button/src/index.ts"
       ]

@@ -1,0 +1,15 @@
+# Mac lint
+*.DS_Store
+
+# Never commit .env
+.env
+
+# Remix
+.cache
+/build
+/public/build
+prisma/dev.db
+/api
+
+# Vercel
+.vercel

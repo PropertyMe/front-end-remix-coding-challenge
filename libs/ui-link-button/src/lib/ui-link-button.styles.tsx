@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "@emotion/styled";
 
 export const StyledLinkButton = styled.a`
   --shadow-color: hsl(var(--hs-links) 30%);
@@ -25,6 +25,7 @@ export const StyledLinkButton = styled.a`
   transform: translateY(0);
   transition: background-color 50ms ease-out, box-shadow 50ms ease-out,
     transform 100ms cubic-bezier(0.3, 0.6, 0.8, 1.25);
+  text-decoration: none;
 
   &:hover {
     --raise: 1px;
