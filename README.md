@@ -2,29 +2,40 @@
 
 A simple demo repo used in Front End code interviews
 
-## Remix App based on [Remix.run Jokes Tutorial](https://remix.run/docs/en/v1/tutorials/jokes)
+## Get started quickly
 
-[README for the Remix App](./apps/remix-app/README.md)
+```sh
+git clone https://github.com/PropertyMe/front-end-remix-coding-challenge.git
+cd front-end-remix-coding-challenge
+npm run dev
+```
 
-This is based on the Jokes App tutorial for easy familiarity of anyone who followed that.
+## This is a Remix App based loosely on [Remix.run Jokes Tutorial](https://remix.run/docs/en/v1/tutorials/jokes)
+
+This is based on the Jokes App tutorial, it might be a source of some explanation as to what is here.
 
 https://remix.run/docs/en/v1/tutorials/jokes
 
+## Uses JokesAPI instead of a database
+
+To make sure it is a light project we do not include all of that tutorial code, instead we simply connect to an external API to get the jokes.
+
+https://sv443.net/jokeapi/v2/
+
 ## Welcome to NX!
 
-- [Into to Nx](https://nx.dev/getting-started/intro)
+This is a monorepo using NX, we'll use it here to help have a library and an app working together but you don't really need to know lots about it.
 
-This is a monorepo management framework, we'll use it here to help have a library and an app working together.
+- [Intro to Nx](https://nx.dev/getting-started/intro)
 
-## Setup
+We use the `apps` and `libs` structure which is the common standard in NX.
 
-From your terminal:
+## Deploy using Vercel
 
-```sh
-npm install
-```
+Create a vercel project and set the [Root Directory](https://vercel.com/docs/concepts/deployments/configure-a-build?query=root%20directory#root-directory) to the demo folder
+in the general settings: `https://vercel.com/{username}/{projectname}/settings/general`
 
-This installs everything you need.
+Then run `vercel` in the root directory
 
 ## Development
 
@@ -34,15 +45,11 @@ From your terminal:
 npm run dev
 ```
 
-This starts our Remix App app in development mode.
+This starts your app in development mode, rebuilding assets on file changes.
 
-## Deploy using Vercel
+The first time it will automatically run `npm install` which will take a while.
 
-Create a vercel project and set the [Root Directory](https://vercel.com/docs/concepts/deployments/configure-a-build?query=root%20directory#root-directory) to the remix-app folder
-in the general settings: `https://vercel.com/{username}/{projectname}/settings/general`
+## Running unit tests
 
-Then run `vercel` in the root directory
-
-## Uses JokesAPI
-
-https://sv443.net/jokeapi/v2/
+Run `npm run test` to execute all unit tests via [Jest](https://jestjs.io).
+Run for example `npm run test:ui-link` to execute only the tests for that library.
