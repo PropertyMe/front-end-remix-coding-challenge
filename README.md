@@ -10,6 +10,8 @@ cd front-end-remix-coding-challenge
 npm run dev
 ```
 
+> 📣 Make sure you have Node 14+ and NPM 7+ installed!
+
 ## This is a Remix App based loosely on [Remix.run Jokes Tutorial](https://remix.run/docs/en/v1/tutorials/jokes)
 
 This is based on the Jokes App tutorial, it might be a source of some explanation as to what is here.
