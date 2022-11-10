@@ -4,7 +4,7 @@ import type { LoaderFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { Outlet, useLoaderData } from "@remix-run/react";
 import { UiLinkButton } from "libs/ui-link-button/src";
-import { Container } from "../components/container";
+import { Container } from "../components/Container";
 import SiteTitle from "../components/SiteTitle";
 
 import { getJokes, Joke } from "../utils/jokes.server";
@@ -105,7 +105,7 @@ export default function JokesRoute() {
       </JokesMain>
       <JokesFooter>
         <Container>
-          <UiLink href="https://sv443.net/jokeapi/v2/" title="JokesAPI v2">
+          <UiLink to="https://sv443.net/jokeapi/v2/" title="JokesAPI v2">
             All credit for the jokes goes to the JokesAPI
           </UiLink>
         </Container>
