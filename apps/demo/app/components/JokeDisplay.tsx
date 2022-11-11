@@ -1,5 +1,6 @@
-import { UiLink } from "@propertyme-coding-challenge/ui-link";
 import type { Joke } from "../utils/jokes.server";
+
+import { UiLink } from "@propertyme-coding-challenge/ui-link";
 
 export function JokeDisplay({ joke }: { joke: Partial<Joke> }) {
   return (

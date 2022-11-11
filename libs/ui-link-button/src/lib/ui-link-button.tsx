@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 import { StyledLinkButton } from "./ui-link-button.styles";
 /* eslint-disable-next-line */
 export interface UiLinkButtonProps {
-  children?: ReactNode;
+  children: ReactNode;
   href: string;
 }
 

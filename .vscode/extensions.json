@@ -1,8 +1,13 @@
 {
   "recommendations": [
-    "nrwl.angular-console",
+    "christian-kohler.npm-intellisense",
+    "dbaeumer.vscode-eslint",
     "esbenp.prettier-vscode",
     "firsttris.vscode-jest-runner",
-    "dbaeumer.vscode-eslint"
+    "formulahendry.auto-rename-tag",
+    "naumovs.color-highlight",
+    "oouo-diogo-perdigao.docthis",
+    "streetsidesoftware.code-spell-checker",
+    "wix.vscode-import-cost"
   ]
 }

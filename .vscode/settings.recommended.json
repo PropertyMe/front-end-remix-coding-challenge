@@ -77,5 +77,6 @@
   "git.autofetch": true,
   "window.autoDetectColorScheme": true,
   "editor.cursorBlinking": "smooth",
-  "editor.cursorStyle": "block"
+  "editor.cursorStyle": "block",
+  "editor.bracketPairColorization.enabled": true
 }

@@ -1,3 +1,4 @@
+// server.js provides an entrypoint for deployment to vercel, and is not used elsewhere
 import { createRequestHandler } from "@remix-run/vercel";
 import * as build from "@remix-run/dev/server-build";
 

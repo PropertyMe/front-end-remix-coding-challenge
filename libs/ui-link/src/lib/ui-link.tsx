@@ -3,7 +3,7 @@ import StyledUiLink, { StyledRemixUiLink } from "./ui-link.styles";
 export interface UiLinkProps {
   type?: "a" | "remix";
   title?: string;
-  to?: string;
+  to: string;
   children: React.ReactNode;
 }
 

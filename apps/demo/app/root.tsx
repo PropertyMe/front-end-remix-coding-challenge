@@ -11,7 +11,6 @@ import {
   useCatch,
 } from "@remix-run/react";
 import React, { useContext, useEffect } from "react";
-
 import { ClientStyleContext, ServerStyleContext } from "./context";
 import globalStylesUrl from "./styles/global.css";
 
@@ -89,14 +88,6 @@ const Document = withEmotionCache(
     );
   }
 );
-export default function App() {
-  return (
-    <Document>
-      <Outlet />
-    </Document>
-  );
-}
-
 export function CatchBoundary() {
   const caught = useCatch();
 
@@ -119,6 +110,14 @@ export function ErrorBoundary({ error }: { error: Error }) {
         <h1>App Error</h1>
         <pre>{error.message}</pre>
       </div>
+    </Document>
+  );
+}
+
+export default function App() {
+  return (
+    <Document>
+      <Outlet />
     </Document>
   );
 }

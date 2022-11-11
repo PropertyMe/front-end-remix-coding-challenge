@@ -40,6 +40,16 @@
         "jestConfig": "libs/ui-link-button/jest.config.ts",
         "passWithNoTests": true
       }
+    },
+    "tsc": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          {
+            "command": "npx tsc --noEmit -p libs/ui-link-button/tsconfig.lib.json"
+          }
+        ]
+      }
     }
   }
 }

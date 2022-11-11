@@ -2,3 +2,6 @@
 
 /dist
 /coverage
+**/dist
+**/api
+**/node_modules

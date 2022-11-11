@@ -10,7 +10,7 @@ cd front-end-remix-coding-challenge
 npm run dev
 ```
 
-> 📣 Make sure you have Node 14+ and NPM 7+ installed!
+> 📣 Make sure you have Node 14+ and NPM 7+ installed! (Try out [fnm](https://github.com/Schniz/fnm) if you don't already use a node manager.) Node 18+ is recommended.
 
 ## This is a Remix App based loosely on [Remix.run Jokes Tutorial](https://remix.run/docs/en/v1/tutorials/jokes)
 

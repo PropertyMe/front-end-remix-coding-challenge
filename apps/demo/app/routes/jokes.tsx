@@ -1,27 +1,13 @@
+import type { LoaderFunction } from "@remix-run/node";
+
 import styled from "@emotion/styled";
 import { UiLink } from "@propertyme-coding-challenge/ui-link";
-import type { LoaderFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { Outlet, useLoaderData } from "@remix-run/react";
 import { UiLinkButton } from "libs/ui-link-button/src";
-import { Container } from "../components/Container";
 import SiteTitle from "../components/SiteTitle";
-
 import { getJokes, Joke } from "../utils/jokes.server";
 
-type LoaderData = {
-  randomJokes: Array<Joke>;
-};
-
-export const loader: LoaderFunction = async ({ request }) => {
-  const randomJokes = await getJokes(5);
-
-  const data: LoaderData = {
-    randomJokes,
-  };
-
-  return json(data);
-};
 const JokesLayout = styled.div`
   display: flex;
   flex-direction: column;
@@ -34,7 +20,24 @@ const JokesHeader = styled.div`
   border-bottom: 1px solid var(--color-border);
 `;
 
-const JokesMain = styled(Container)`
+const JokesContainer = styled.div({
+  "--gutter": "16px",
+  width: "1024px",
+  maxWidth: "calc(100% - var(--gutter) * 2)",
+  marginRight: "auto",
+  marginLeft: "auto",
+  display: "flex",
+  gap: "1rem",
+
+  "@media (max-width: 639px)": {
+    flexDirection: "column",
+  },
+  "@media (min-width: 640px)": {
+    "--gutter": "40px",
+  },
+});
+
+const JokesMainContainer = styled(JokesContainer)`
   padding-top: 2rem;
   padding-bottom: 2rem;
   flex: 1 1 100%;
@@ -46,7 +49,7 @@ const JokesMain = styled(Container)`
   }
 `;
 
-const Sidebar = styled.div`
+const JokesSidebar = styled.div`
   max-width: 12rem;
 `;
 
@@ -60,13 +63,21 @@ const JokesFooter = styled.footer`
   border-top: 1px solid var(--color-border);
 `;
 
-export default function JokesRoute() {
-  const data = useLoaderData<LoaderData>();
+type LoaderData = Joke[];
+
+export const loader: LoaderFunction = async ({}) => {
+  const randomJokes: LoaderData = await getJokes(5);
+
+  return json(randomJokes);
+};
+
+export default function JokesLayoutRoute() {
+  const randomJokes = useLoaderData<LoaderData>();
 
   return (
     <JokesLayout>
       <JokesHeader>
-        <Container>
+        <JokesContainer>
           <UiLink
             type="remix"
             to="/"
@@ -78,10 +89,10 @@ export default function JokesRoute() {
               <span className="logo-medium">J🤪KES</span>
             </SiteTitle>
           </UiLink>
-        </Container>
+        </JokesContainer>
       </JokesHeader>
-      <JokesMain>
-        <Sidebar>
+      <JokesMainContainer>
+        <JokesSidebar>
           <p>
             <UiLink type="remix" to=".">
               Get a random joke
@@ -89,7 +100,7 @@ export default function JokesRoute() {
           </p>
           <p>Here are a few more jokes to check out:</p>
           <ul>
-            {data.randomJokes.map((joke) => (
+            {randomJokes.map((joke) => (
               <li key={`${joke.id}`}>
                 <UiLink type="remix" to={`${joke.id}`}>
                   {joke.setup || joke.joke}
@@ -100,15 +111,16 @@ export default function JokesRoute() {
           <UiLinkButton href="https://sv443.net/jokeapi/v2/#submit">
             Add your own
           </UiLinkButton>
-        </Sidebar>
+        </JokesSidebar>
+
         <JokesOutlet />
-      </JokesMain>
+      </JokesMainContainer>
       <JokesFooter>
-        <Container>
+        <JokesContainer>
           <UiLink to="https://sv443.net/jokeapi/v2/" title="JokesAPI v2">
             All credit for the jokes goes to the JokesAPI
           </UiLink>
-        </Container>
+        </JokesContainer>
       </JokesFooter>
     </JokesLayout>
   );

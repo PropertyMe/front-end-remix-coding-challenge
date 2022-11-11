@@ -3,8 +3,6 @@ import { useLoaderData } from "@remix-run/react";
 import { JokeDisplay } from "../../components/JokeDisplay";
 import { getJokes, Joke } from "../../utils/jokes.server";
 
-type LoaderData = { randomJoke: Joke };
-
 export const loader: LoaderFunction = async () => {
   const randomJokes = await getJokes(1);
   const randomJoke = randomJokes[0];
@@ -15,13 +13,11 @@ export const loader: LoaderFunction = async () => {
     });
   }
 
-  const data: LoaderData = { randomJoke };
-
-  return json(data);
+  return json(randomJoke);
 };
 
 export default function JokesIndexRoute() {
-  const data = useLoaderData<LoaderData>();
+  const randomJoke = useLoaderData<Joke>();
 
-  return <JokeDisplay joke={data.randomJoke} />;
+  return <JokeDisplay joke={randomJoke} />;
 }

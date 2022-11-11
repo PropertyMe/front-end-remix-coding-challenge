@@ -8,7 +8,6 @@
 .cache
 /build
 /public/build
-prisma/dev.db
 /api
 
 # Vercel

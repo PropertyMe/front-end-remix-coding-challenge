@@ -3,7 +3,7 @@ import { UiLink } from "@propertyme-coding-challenge/ui-link";
 import { MetaFunction } from "@remix-run/node";
 import SiteTitle from "../components/SiteTitle";
 
-const Box = styled.div`
+const IndexWrapper = styled.div`
   background-image: radial-gradient(
     circle,
     rgba(152, 11, 238, 1) 0%,
@@ -18,7 +18,7 @@ const Box = styled.div`
   max-width: 100%;
 `;
 
-const Content = styled.div`
+const IndexContent = styled.div`
   padding-top: 3rem;
   padding-bottom: 3rem;
   text-align: center;
@@ -79,8 +79,8 @@ export const meta: MetaFunction = () => ({
 
 export default function IndexRoute() {
   return (
-    <Box>
-      <Content>
+    <IndexWrapper>
+      <IndexContent>
         <SiteTitle>
           Remix <SiteTitleBig>Jokes!</SiteTitleBig>
         </SiteTitle>
@@ -89,7 +89,7 @@ export default function IndexRoute() {
             Read Jokes
           </UiLink>
         </IndexNav>
-      </Content>
+      </IndexContent>
       <IndexFooter>
         References:
         <UiLink to="https://remix.run/docs/en/v1/tutorials/jokes">
@@ -97,6 +97,6 @@ export default function IndexRoute() {
         </UiLink>
         <UiLink to="https://sv443.net/jokeapi/v2/">JokesAPI</UiLink>
       </IndexFooter>
-    </Box>
+    </IndexWrapper>
   );
 }
